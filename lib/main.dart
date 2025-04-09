@@ -1,8 +1,8 @@
 import 'package:app_dev/firebase_options.dart';
+import 'package:app_dev/login/login_screen.dart';
 import 'package:app_dev/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

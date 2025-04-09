@@ -1,51 +1,88 @@
-import 'dart:async';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:app_dev/login/login_screen.dart';
+import 'package:app_dev/login/signup_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'home screen.dart';
-import 'login/signup_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => SignUpScreen()));
-    });
+    init();
+  }
+
+  void init() async {
+    await Future.delayed(Duration(seconds: 3));
+    Get.to(SignUpScreen());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.black26,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(
-            child: CircleAvatar(
-              radius: 80,
-              backgroundColor: Colors.red,
-              backgroundImage: AssetImage('assets/faizan123.webp'),
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/logos/3d-car-with-minimal-background.jpg",
+                ),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-          SizedBox(height: 15),
-          Text(
-            "LuxuryLane",
-            style: GoogleFonts.quando(
-              textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color:Colors.white),
-            ),
-          ), Text(
-            "by faizan",
-            style: GoogleFonts.kaushanScript(
-              textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.white),
+          Column(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    height: 250,
+                    width: 250,
+                    child: Image(
+                      image: AssetImage("assets/logos/CARSLOGO.png"),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 600),
+            child: Center(
+              child: SizedBox(
+                width: 250,
+                height: 50.0,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.brown),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Get Started',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(width: 10), // spacing between text and icon
+                      Icon(Icons.arrow_forward, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],
